@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-04-27T09:05:12" hostname="Noa-Kogonia" time="0.032">
+  <properties/>
+  <testcase name="solveEquationTestEmptyString()" classname="tests" time="0.018"/>
+  <testcase name="solveEquationTestInvalid()" classname="tests" time="0.001"/>
+  <testcase name="solveEquationTestDivideByZero()" classname="tests" time="0.004"/>
+  <testcase name="solveEquationTestSum()" classname="tests" time="0.001"/>
+  <testcase name="solveEquationTestSplit()" classname="tests" time="0.001"/>
+  <testcase name="solveEquationTestString()" classname="tests" time="0.001"/>
+  <testcase name="solveEquationTestNull()" classname="tests" time="0.001"/>
+  <testcase name="solveEquationTestMultiply()" classname="tests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
