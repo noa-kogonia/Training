@@ -1,87 +1,42 @@
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class tests {
-    Exe1 exe1 = new Exe1();
+    CharArraySolution charArraySolution = new CharArraySolution();
+    SplitBySolution splitBySolution = new SplitBySolution();
+    RegexSolution regexSolution = new RegexSolution();
     private static final String ERR_MSG = "The number is not as expected: ";
+
     public tests() {
     }
 
-    @Test
-    public void solveEquationTestMultiply() {
-        int res1 = exe1.solveEquation("10*2");
-        int res2 = exe1.solveEquation2ndWay("10*2");
-        Assertions.assertEquals(20, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(20, res2, "2nd func " + ERR_MSG + res2);
+    static Stream<Arguments> EquationAndSolutionProvider() {
+        return Stream.of(
+                arguments("10*2", 20),
+                arguments("10/2", 5),
+                arguments("10+2", 12),
+                arguments("10-2", -1),
+                arguments("10/0", -1),
+                arguments("Noa", -1),
+                arguments("", -1),
+                arguments(null, -1)
+        );
     }
 
-    @Test
-    public void solveEquationTestSplit() {
-        int res1 = exe1.solveEquation("10/2");
-        int res2 = exe1.solveEquation2ndWay("10/2");
-        int res3 = exe1.solveEquationRegex("10/2");
-        Assertions.assertEquals(5, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(5, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(5, res3, "3rd func " + ERR_MSG + res3);
-    }
-
-    @Test
-    public void solveEquationTestSum() {
-        int res1 = exe1.solveEquation("10+2");
-        int res2 = exe1.solveEquation2ndWay("10+2");
-        int res3 = exe1.solveEquationRegex("10+2");
-        Assertions.assertEquals(12, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(12, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(12, res3, "3rd func " + ERR_MSG + res3);
-    }
-
-    @Test
-    public void solveEquationTestInvalid() {
-        int res1 = exe1.solveEquation("10-2");
-        int res2 = exe1.solveEquation2ndWay("10-2");
-        int res3 = exe1.solveEquationRegex("10-2");
-        Assertions.assertEquals(-1, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(-1, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(-1, res3, "3rd func " + ERR_MSG + res3);
-    }
-
-    @Test
-    public void solveEquationTestDivideByZero() {
-        int res1 = exe1.solveEquation("10/0");
-        int res2 = exe1.solveEquation2ndWay("10/0");
-        int res3 = exe1.solveEquationRegex("10/0");
-        Assertions.assertEquals(-1, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(-1, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(-1, res3, "3rd func " + ERR_MSG + res3);
-    }
-
-    @Test
-    public void solveEquationTestString() {
-        int res1 = exe1.solveEquation("Noa");
-        int res2 = exe1.solveEquation2ndWay("Noa");
-        int res3 = exe1.solveEquation2ndWay("Noa");
-        Assertions.assertEquals(-1, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(-1, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(-1, res3, "3rd func " + ERR_MSG + res3);
-    }
-
-    @Test
-    public void solveEquationTestNull() {
-        int res1 = exe1.solveEquation(null);
-        int res2 = exe1.solveEquation(null);
-        int res3 = exe1.solveEquationRegex(null);
-        Assertions.assertEquals(-1, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(-1, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(-1, res3, "3rd func " + ERR_MSG + res3);
-    }
-
-    @Test
-    public void solveEquationTestEmptyString() {
-        int res1 = exe1.solveEquation("");
-        int res2 = exe1.solveEquation2ndWay("");
-        int res3 = exe1.solveEquationRegex("");
-        Assertions.assertEquals(-1, res1, "1st func "+ ERR_MSG + res1);
-        Assertions.assertEquals(-1, res2, "2nd func " + ERR_MSG + res2);
-        Assertions.assertEquals(-1, res3, "3rd func " + ERR_MSG + res3);
+    @ParameterizedTest
+    @MethodSource("EquationAndSolutionProvider")
+    public void solveEquationTest(String equation, int expected) {
+        int res1 = charArraySolution.solveEquation(equation);
+        int res2 = splitBySolution.solveEquation(equation);
+        int res3 = regexSolution.solveEquation(equation);
+        Assertions.assertEquals(expected, res1, "Char Array Solution " + ERR_MSG + res1);
+        Assertions.assertEquals(expected, res2, "Split By Solution " + ERR_MSG + res2);
+        Assertions.assertEquals(expected, res3, "Regex Solution " + ERR_MSG + res3);
     }
 }
