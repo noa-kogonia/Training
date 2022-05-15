@@ -2,11 +2,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexSolution {
+    private final String REGEX = "(\\d+)([\\+,\\*,\\/])(\\d+)";
 
     public int solveEquation(String equation) {
-        if (Utils.getInstance().verifyEquationInput(equation)) {
-            String regex = "(\\d+)([\\+,\\*,\\/])(\\d+)";
-            Pattern expPattern = Pattern.compile(regex);
+        if (Utils.verifyEquationInput(equation)) {
+            Pattern expPattern = Pattern.compile(REGEX);
             Matcher expMatcher = expPattern.matcher(equation);
 
             if (expMatcher.matches()) {
@@ -14,8 +14,9 @@ public class RegexSolution {
                 int numBefore = Integer.parseInt(expMatcher.group(1));
                 int numAfter = Integer.parseInt(expMatcher.group(3));
 
-                if (Utils.VALID_OPERATORS.contains(operator))
-                    return Utils.getInstance().calcRes(operator, numBefore, numAfter);
+                if (Utils.VALID_OPERATORS.contains(operator)){
+                    return Utils.solveEquation(operator, numBefore, numAfter);
+                }
             }
         }
         return -1;

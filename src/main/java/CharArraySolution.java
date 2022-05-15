@@ -1,44 +1,41 @@
 import java.util.Arrays;
 
 public class CharArraySolution {
-    int string_counter = 0;
 
     public int solveEquation(String equation) {
 
-        if (Utils.getInstance().verifyEquationInput(equation)) {
+        if (Utils.verifyEquationInput(equation)) {
             char[] characters = equation.toCharArray();
-            int operatorLocation = findOperator(characters);
+            int operator_location = findOperator(characters);
 
-            if (verifyOperator(Character.toString(characters[operatorLocation]), operatorLocation)) {
-                int numBefore = Integer.parseInt(
-                        String.valueOf(
-                                Arrays.copyOfRange(characters, 0, operatorLocation))
-                );
-                int numAfter = Integer.parseInt(
-                        String.valueOf(
-                                Arrays.copyOfRange(characters, operatorLocation + 1, characters.length))
-                );
-                return Utils.getInstance().calcRes(Character.toString(characters[operatorLocation]), numBefore, numAfter);
+            if (operator_location != -1) {
+                if (Utils.VALID_OPERATORS.contains(Character.toString(characters[operator_location]))) {
+                    int numBefore = Integer.parseInt(
+                            String.valueOf(Arrays.copyOfRange(characters, 0, operator_location)));
+                    int numAfter = Integer.parseInt(
+                            String.valueOf(Arrays.copyOfRange(characters, operator_location + 1, characters.length)));
+                    return Utils.solveEquation(Character.toString(characters[operator_location]), numBefore, numAfter);
+                } else {
+                    return -1;
+                }
             }
         }
         return -1;
     }
 
-    public int findOperator(char[] characters) {
+    private int findOperator(char[] characters) {
+        int string_counter = 0;
+        int operator_loc = 0;
         for (int i = 0; i < characters.length; i++) {
             if (!Character.isDigit(characters[i])) {
                 string_counter++;
-                return i;
+                operator_loc = i;
             }
+        }
+        if (string_counter == 1) {
+            return operator_loc;
         }
         return -1;
     }
 
-
-    public boolean verifyOperator(String operatorVal, int operatorLocation) {
-        if (operatorLocation == -1 || string_counter > 1) {
-            return false;
-        }
-        return Utils.VALID_OPERATORS.contains(operatorVal);
-    }
 }

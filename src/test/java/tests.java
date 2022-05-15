@@ -9,7 +9,6 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class tests {
     CharArraySolution charArraySolution = new CharArraySolution();
-    SplitBySolution splitBySolution = new SplitBySolution();
     RegexSolution regexSolution = new RegexSolution();
     private static final String ERR_MSG = "The number is not as expected: ";
 
@@ -25,7 +24,8 @@ public class tests {
                 arguments("10/0", -1),
                 arguments("Noa", -1),
                 arguments("", -1),
-                arguments(null, -1)
+                arguments(null, -1),
+                arguments("10+*7", -1)
         );
     }
 
@@ -33,10 +33,8 @@ public class tests {
     @MethodSource("EquationAndSolutionProvider")
     public void solveEquationTest(String equation, int expected) {
         int res1 = charArraySolution.solveEquation(equation);
-        int res2 = splitBySolution.solveEquation(equation);
-        int res3 = regexSolution.solveEquation(equation);
+        int res2 = regexSolution.solveEquation(equation);
         Assertions.assertEquals(expected, res1, "Char Array Solution " + ERR_MSG + res1);
-        Assertions.assertEquals(expected, res2, "Split By Solution " + ERR_MSG + res2);
-        Assertions.assertEquals(expected, res3, "Regex Solution " + ERR_MSG + res3);
+        Assertions.assertEquals(expected, res2, "Regex Solution " + ERR_MSG + res2);
     }
 }
