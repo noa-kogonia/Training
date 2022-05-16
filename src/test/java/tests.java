@@ -25,7 +25,8 @@ public class tests {
                 arguments("Noa", -1),
                 arguments("", -1),
                 arguments(null, -1),
-                arguments("10+*7", -1)
+                arguments("10+*7", -1),
+                arguments("a*b", -1)
         );
     }
 

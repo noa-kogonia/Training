@@ -4,17 +4,17 @@ import java.util.List;
 public class Utils {
     public static final List<String> VALID_OPERATORS = Arrays.asList("*", "+", "/");
 
-    public static int solveEquation(String operator, int numBefore, int numAfter) {
+    public static int solveEquation(String operator, int numOne, int numTwo) {
         switch (operator) {
             case "*":
-                return numBefore * numAfter;
+                return numOne * numTwo;
             case "/":
-                if (numAfter == 0){
+                if (numTwo == 0){
                     return -1;
                 }
-                return numBefore / numAfter;
+                return numOne / numTwo;
             case "+":
-                return numBefore + numAfter;
+                return numOne + numTwo;
         }
         return -1;
     }

@@ -3,37 +3,40 @@ import java.util.Arrays;
 public class CharArraySolution {
 
     public int solveEquation(String equation) {
-
         if (Utils.verifyEquationInput(equation)) {
             char[] characters = equation.toCharArray();
-            int operator_location = findOperator(characters);
+            int operatorLocation = findOperator(characters);
 
-            if (operator_location != -1) {
-                if (Utils.VALID_OPERATORS.contains(Character.toString(characters[operator_location]))) {
-                    int numBefore = Integer.parseInt(
-                            String.valueOf(Arrays.copyOfRange(characters, 0, operator_location)));
-                    int numAfter = Integer.parseInt(
-                            String.valueOf(Arrays.copyOfRange(characters, operator_location + 1, characters.length)));
-                    return Utils.solveEquation(Character.toString(characters[operator_location]), numBefore, numAfter);
-                } else {
-                    return -1;
-                }
+            if (operatorLocation == -1) {
+                return operatorLocation;
+            }
+
+            String operator = Character.toString(characters[operatorLocation]);
+            if (Utils.VALID_OPERATORS.contains(operator)) {
+                int numOne = Integer.parseInt(
+                        String.valueOf(Arrays.copyOfRange(characters, 0, operatorLocation)));
+                int numTwo = Integer.parseInt(
+                        String.valueOf(Arrays.copyOfRange(characters, operatorLocation + 1, characters.length)));
+                return Utils.solveEquation(operator, numOne, numTwo);
+            } else {
+                return -1;
             }
         }
+
         return -1;
     }
 
     private int findOperator(char[] characters) {
-        int string_counter = 0;
-        int operator_loc = 0;
+        int stringCounter = 0;
+        int operatorLoc = 0;
         for (int i = 0; i < characters.length; i++) {
             if (!Character.isDigit(characters[i])) {
-                string_counter++;
-                operator_loc = i;
+                stringCounter++;
+                operatorLoc = i;
             }
         }
-        if (string_counter == 1) {
-            return operator_loc;
+        if (stringCounter == 1) {
+            return operatorLoc;
         }
         return -1;
     }

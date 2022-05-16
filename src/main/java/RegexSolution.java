@@ -11,12 +11,9 @@ public class RegexSolution {
 
             if (expMatcher.matches()) {
                 String operator = expMatcher.group(2);
-                int numBefore = Integer.parseInt(expMatcher.group(1));
-                int numAfter = Integer.parseInt(expMatcher.group(3));
-
-                if (Utils.VALID_OPERATORS.contains(operator)){
-                    return Utils.solveEquation(operator, numBefore, numAfter);
-                }
+                int numOne = Integer.parseInt(expMatcher.group(1));
+                int numTwo = Integer.parseInt(expMatcher.group(3));
+                return Utils.solveEquation(operator, numOne, numTwo);
             }
         }
         return -1;
