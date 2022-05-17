@@ -4,30 +4,22 @@ import java.util.List;
 public class Utils {
     public static final List<String> VALID_OPERATORS = Arrays.asList("*", "+", "/");
 
-    private Utils() {}
-
-    private static final Utils instance = new Utils();
-
-    public static Utils getInstance() {
-        return instance;
-    }
-
-    public int calcRes(String operator, int numBefore, int numAfter) {
+    public static int solveEquation(String operator, int numOne, int numTwo) {
         switch (operator) {
             case "*":
-                return numBefore * numAfter;
+                return numOne * numTwo;
             case "/":
-                if (numAfter == 0){
+                if (numTwo == 0){
                     return -1;
                 }
-                return numBefore / numAfter;
+                return numOne / numTwo;
             case "+":
-                return numBefore + numAfter;
+                return numOne + numTwo;
         }
         return -1;
     }
 
-    public boolean verifyEquationInput(String equation) {
+    public static boolean verifyEquationInput(String equation) {
         return equation != null && !equation.isEmpty();
     }
 
