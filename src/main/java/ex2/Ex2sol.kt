@@ -1,8 +1,10 @@
 package ex2
 
 fun isCorrectCapitalization(word: String?): Boolean {
-    val regex = "(^[A-Z][A-Z]+)||(^[A-Z][a-z]+)||(^[a-z][a-z]+)"
-    if((word == null) || word.isEmpty()) return false
+    if((word == null) || word.isEmpty()){
+        return false
+    }
+    val regex = "(^[A-Z]+)||(^[A-Z][a-z]+)||(^[a-z]+)"
     return word.matches(regex.toRegex())
 }
 
