@@ -35,6 +35,9 @@ class testsKotlin {
     private fun sentencesAndDiffsProvider(): Stream<Arguments?>? {
         return Stream.of(
             Arguments.arguments("I adopted a cat", "I adopted a dog", "[cat]"),
+            Arguments.arguments("My name is Noa Kogonia", "My name is Maxim Shoustin","[Noa, Kogonia]"),
+            Arguments.arguments("Banana Apple Pineapple", "Apple Banana Pineapple", "[]"),
+            Arguments.arguments("I adopted a cat", "I adopted a cat", "[]"),
         )
     }
 
