@@ -1,4 +1,5 @@
 import ex2.isCorrectCapitalization
+import ex3.compareTwoSentences
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
@@ -28,5 +29,19 @@ class testsKotlin {
     fun isCorrectCapitalization_test(word:String?, expected: Boolean){
         val res: Boolean = isCorrectCapitalization(word)
         Assertions.assertEquals(expected, res, "The word is not according to the requested format, expected: $expected, actual: $res")
+    }
+
+
+    private fun sentencesAndDiffsProvider(): Stream<Arguments?>? {
+        return Stream.of(
+            Arguments.arguments("I adopted a cat", "I adopted a dog", "[cat]"),
+        )
+    }
+
+    @ParameterizedTest
+    @MethodSource("sentencesAndDiffsProvider")
+    fun compareTwoSentences_test(sentence1:String, sentence2:String, diffs:String){
+        val res: String = compareTwoSentences(sentence1,sentence2)
+        Assertions.assertEquals(diffs,res,"the diffs couldn't be found - or wrong")
     }
 }
