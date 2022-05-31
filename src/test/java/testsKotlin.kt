@@ -38,6 +38,7 @@ class testsKotlin {
             Arguments.arguments("My name is Noa Kogonia", "My name is Maxim Shoustin","(Noa, Kogonia, Maxim, Shoustin)"),
             Arguments.arguments("Banana Apple Pineapple", "Apple Banana Pineapple", "()"),
             Arguments.arguments("I adopted a cat", "I adopted a cat", "()"),
+            Arguments.arguments("I adopted a cat", "I a cat adopted", "()"),
         )
     }
 

@@ -3,11 +3,8 @@ package ex3
 fun compareTwoSentencesReturnDiff(sen1: String, sen2: String): String {
     val words1 = splitSentenceIntoWords(sen1)
     val words2 = splitSentenceIntoWords(sen2)
-    val diff = findDiff(words1, words2).toString()
-    diff.replace("[", "(")
-    diff.replace("]", ")")
-
-    return diff
+    val diff = findDiff(words1, words2)
+    return "(" + (diff.joinToString(", ")) + ")"
 }
 
 fun findDiff(sen1: List<String>, sen2: List<String>): List<String> {
