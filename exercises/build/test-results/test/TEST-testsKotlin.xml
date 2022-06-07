@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testsKotlin" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-05-31T08:32:40" hostname="Noa-Kogonia" time="0.053">
+  <properties/>
+  <testcase name="[1] I adopted a cat, I adopted a dog, (cat, dog)" classname="testsKotlin" time="0.043"/>
+  <testcase name="[2] My name is Noa Kogonia, My name is Maxim Shoustin, (Noa, Kogonia, Maxim, Shoustin)" classname="testsKotlin" time="0.001"/>
+  <testcase name="[3] Banana Apple Pineapple, Apple Banana Pineapple, ()" classname="testsKotlin" time="0.001"/>
+  <testcase name="[4] I adopted a cat, I adopted a cat, ()" classname="testsKotlin" time="0.001"/>
+  <testcase name="[5] I adopted a cat, I a cat adopted, ()" classname="testsKotlin" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
